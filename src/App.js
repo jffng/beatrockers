@@ -9,6 +9,9 @@ class App extends Component {
     super(props)
 
     this.initTone = this.initTone.bind(this);
+    this.reset = this.reset.bind(this);
+    this.setHouse = this.setHouse.bind(this);
+    this.setReggaeton = this.setReggaeton.bind(this);
   }
 
   componentDidMount(){
@@ -40,7 +43,7 @@ class App extends Component {
           if (column[i][col] === true){
             //slightly randomized velocities
             let vel = Math.random() * 0.5 + 0.5;
-            this.drums.get(this.sampleNames[i]).start(time, 0, "16n", 0, vel);
+            this.drums.get(this.sampleNames[i]).start(time, 0, "16n", 0, vel); // where the note is actually being fired
           }
         }
       } catch (err){
@@ -50,6 +53,33 @@ class App extends Component {
 
     this.transport.start();
     this.loop.start();
+  }
+
+  reset(){
+    this.nx.matrix.set.all([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]);
+    this.transport.bpm.value = 90
+  }
+
+  setHouse(){
+    this.nx.matrix.set.all([
+      [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+    ]);
+    this.transport.bpm.value = 120
+  }
+
+  setReggaeton(){
+    this.nx.matrix.set.all([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+    ]);
+    this.transport.bpm.value = 100
   }
   
   render() {
@@ -63,6 +93,12 @@ class App extends Component {
             <div styleName='sample'>kick</div>
           </div>
           <div id="target" styleName='target'></div>
+        </div>
+        <div>
+          <button onClick={this.reset}>Reset</button>
+          <button>Hip/ Hop</button>
+          <button onClick={this.setReggaeton}>Reggaeton</button>
+          <button onClick={this.setHouse}>House</button>
         </div>
       </div>
     );
