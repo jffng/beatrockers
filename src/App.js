@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './App.css';
 import Wrapper from './components/wrapper.js';
 
 class App extends Component {

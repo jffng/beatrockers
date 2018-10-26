@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Record from './record.js';
 import Sequencer from './sequencer.js';
+import Metronome from './metronome.js';
 
 const MixButton = styled.button`
   color: white;
@@ -115,6 +116,7 @@ class Wrapper extends Component {
 
 	    return (
 	    	<div>
+	    	<Metronome />
 	    	<Sequencer 
 	    		ref={instance => {this.sequencer = instance;}}
 	    		recordFile={this.state.recordFile}/>
