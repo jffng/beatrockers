@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Tone from 'tone';
+import Nexus from 'nexusui';
 
 var metronome;
 var time;
 
-//TODO: slider to change bpm
+//TODO: when click stop metronome, sequence also stop...
 
 class Metronome extends Component {
 	constructor(props) {
@@ -13,9 +14,15 @@ class Metronome extends Component {
 		this.initMetronome = this.initMetronome.bind(this);
 		this.playMetronome = this.playMetronome.bind(this);
 		this.stopMetronome = this.stopMetronome.bind(this);
+		this.updateBPM = this.updateBPM.bind(this);
+		this.displayBPM = this.displayBPM.bind(this);
+
+		 this.state = {
+	      bpm: 60
+	    }
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.initMetronome();
 	}
 
@@ -37,10 +44,27 @@ class Metronome extends Component {
 		this.transport.clear(time);
 	}
 
+	updateBPM(e) {
+		this.stopMetronome();
+		this.transport.bpm.value = e.target.value;
+		this.playMetronome();
+
+		this.setState({
+	      bpm: e.target.value
+	    });
+	}
+
+	displayBPM(bpm) {
+		return <div><p>current BPM: {bpm}</p></div>
+	}
+
 	render() {
+		const currentBPM = this.displayBPM(this.state.bpm);
+
 		return (
 			<div>
-				<input id="bpm" type="range" name="amountRange" min="30" max="300" value="120" step="5" />
+				{currentBPM}
+				<input id="slider" type="range" onChange={this.updateBPM} min="30" max="300" step="5"/>
 				<button onClick={this.playMetronome}>start metronome</button>
 				<button onClick={this.stopMetronome}>stop metronome</button>
 			</div>
