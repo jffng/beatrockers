@@ -4,9 +4,14 @@
 
 ## Background, Resources, and References
 
-Visit the [Airtable]() for background documentation.
+Visit the [Airtable](https://airtable.com/tbloTysbX6RKMGqd2/viwijbvau0UMShRIe) for background documentation, including:
+- Comp / comp
+- Interviews
+- Questions
 
 ## Demos
+
+[Link to demos](https://frog-ny.github.io/beatrockers/build/)
 
 ## Backlog
 
