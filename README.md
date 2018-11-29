@@ -4,7 +4,7 @@
 
 ## Background, Resources, and References
 
-Information can be found
+Visit the [Airtable]() for background documentation.
 
 ## Demos
 
@@ -27,3 +27,7 @@ Information can be found
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 It has been ejected and includes modifications for css-modules, and a fabric script for deployment.
+
+`npm i`
+
+`npm start`
