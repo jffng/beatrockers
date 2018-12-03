@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../App.css';
+import styles from './Sequencer.css';
 import Tone from 'tone';
 import Nexus from 'nexusui';
 import CSSModules from 'react-css-modules';
@@ -9,14 +9,12 @@ class Sequencer extends Component {
     super(props)
 
     this.initTone = this.initTone.bind(this);
+    this.reset = this.reset.bind(this);
+    this.setHouse = this.setHouse.bind(this);
+    this.setReggaeton = this.setReggaeton.bind(this);
   }
 
-  componentDidMount(){
-    this.initTone();
-  }
-
-  updateDrums(){
-
+	updateDrums(){
     if (this.props.recordFile.length){
       console.log('update drum is called')
       this.drums = new Tone.Players({
@@ -27,7 +25,11 @@ class Sequencer extends Component {
         "volume": -10,
         "fadeOut": "32n"
       }).toMaster();
-      }
+		}
+  }
+
+  componentDidMount(){
+    this.initTone();
   }
 
   initTone(){
@@ -55,7 +57,7 @@ class Sequencer extends Component {
           if (column[i][col] === true){
             //slightly randomized velocities
             let vel = Math.random() * 0.5 + 0.5;
-            this.drums.get(this.sampleNames[i]).start(time, 0, "16n", 0, vel);
+            this.drums.get(this.sampleNames[i]).start(time, 0, "16n", 0, vel); // where the note is actually being fired
           }
         }
       } catch (err){
@@ -66,9 +68,37 @@ class Sequencer extends Component {
     this.transport.start();
     this.loop.start();
   }
-  
+
+  reset(){
+    this.nx.matrix.set.all([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]);
+    this.transport.bpm.value = 90
+  }
+
+  setHouse(){
+    this.nx.matrix.set.all([
+      [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+    ]);
+    this.transport.bpm.value = 120
+  }
+
+  setReggaeton(){
+    this.nx.matrix.set.all([
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+    ]);
+    this.transport.bpm.value = 100
+  }
+
   render() {
     return (
+      <div styleName="App">
         <div styleName='sequencer'>
           <div>
             <div styleName='sample'>hh</div>
@@ -77,7 +107,13 @@ class Sequencer extends Component {
           </div>
           <div id="target" styleName='target'></div>
         </div>
-
+        <div>
+          <button onClick={this.reset}>Reset</button>
+          <button>Hip/ Hop</button>
+          <button onClick={this.setReggaeton}>Reggaeton</button>
+          <button onClick={this.setHouse}>House</button>
+        </div>
+      </div>
     );
   }
 }
