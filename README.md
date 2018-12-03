@@ -5,9 +5,10 @@
 ## Background, Resources, and References
 
 Visit the [Airtable](https://airtable.com/tbloTysbX6RKMGqd2/viwijbvau0UMShRIe) for background documentation, including:
-- Comp / comp
-- Interviews
-- Questions
+- Beatrockers Overview
+- Comparative / Competitive Analysis
+- Interviews / documentation from visit to Lavelle School for the Blind
+- Open questions
 
 ## Demos
 
@@ -15,19 +16,21 @@ Visit the [Airtable](https://airtable.com/tbloTysbX6RKMGqd2/viwijbvau0UMShRIe) f
 
 ## Backlog
 
+#### Front-end
+- [ ] Ability to view existing 
+
 #### Web Audio
 - [ ] Metronome
 - [ ] Loop a recording
 
-#### Front-end
-
 #### Back-end
-- [ ] Firebase integration
-- [ ] Allows for remixing
+- [ ] User authentication: google, facebook, email
+- [ ] Firebase integration for analytics
 - [ ] Infrastructure for saving a recording
 - [ ] Infrastructure for sharing a recording
+- [ ] Infrastructure for forking / remixing an existing recording
 
-## Getting Started
+## Getting Started with the code
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
