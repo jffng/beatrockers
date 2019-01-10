@@ -5,6 +5,9 @@ import Sequencer from './components/Sequencer';
 import Record from './components/Record';
 import CSSModules from 'react-css-modules';
 import styles from './App.css';
+import SignInPage from './components/SignIn';
+
+import * as ROUTES from './constants/routes';
 
 const App = () => {
   return (
@@ -24,12 +27,16 @@ const App = () => {
             <li>
               <Link styleName="link" to="/sampler">Sampler</Link>
             </li>
+             <li>
+              <Link styleName="link" to="/signin">Sign In</Link>
+            </li>
           </ul>
         </nav>
         <div styleName="App">
           <Route path="/sequencer" component={Sequencer} />
           <Route path="/record" component={Record} />
           <Route path="/sampler" component={Wrapper} />
+          <Route path="/signin" component={SignInPage} />
         </div>
       </div>
     </Router>
