@@ -54,7 +54,7 @@ class Metronome extends Component {
 	}
 
 	updateBPM(e) {
-		this.stopMetronome();
+		//this.stopMetronome();
 		this.transport.bpm.value = e.target.value;
 		this.playMetronome();
 

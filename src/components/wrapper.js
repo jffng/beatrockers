@@ -116,6 +116,7 @@ class Wrapper extends Component {
 
 	    return (
 	    	<div>
+	    	<Metronome />
 	    	<Sequencer 
 	    		ref={instance => {this.sequencer = instance;}}
 	    		recordFile={this.state.recordFile}/>
