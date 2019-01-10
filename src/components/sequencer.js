@@ -14,7 +14,7 @@ class Sequencer extends Component {
     this.setReggaeton = this.setReggaeton.bind(this);
   }
 
-	updateDrums(){
+  updateDrums(){
     if (this.props.recordFile.length){
       console.log('update drum is called')
       this.drums = new Tone.Players({
@@ -25,7 +25,7 @@ class Sequencer extends Component {
         "volume": -10,
         "fadeOut": "32n"
       }).toMaster();
-		}
+    }
   }
 
   componentDidMount(){
@@ -90,7 +90,7 @@ class Sequencer extends Component {
   setReggaeton(){
     this.nx.matrix.set.all([
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+      [0, 0, 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
       [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0]
     ]);
     this.transport.bpm.value = 100
@@ -99,6 +99,7 @@ class Sequencer extends Component {
   render() {
     return (
       <div styleName="App">
+        <p>beat rockers sequencer demo</p>
         <div styleName='sequencer'>
           <div>
             <div styleName='sample'>hh</div>

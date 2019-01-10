@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Record from './Record.js';
 import Sequencer from './Sequencer.js';
-// import Metronome from './Metronome.js';
+import Metronome from './Metronome.js';
 
 const MixButton = styled.button`
   color: white;
