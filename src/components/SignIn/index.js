@@ -44,6 +44,10 @@ class SignInFormBase extends Component {
           email: '', 
           error: null,
           success: 'An email with a sign in link has been sent to you.' });
+
+        //Save the email locally in case sign in on same device
+        //window.localStorage.setItem('emailForSignIn', email);
+
         //this.setState({ ...INITIAL_STATE });
         //this.props.history.push(ROUTES.SAMPLER);
       })
