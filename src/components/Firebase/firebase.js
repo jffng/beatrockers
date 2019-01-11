@@ -27,6 +27,9 @@ class Firebase {
 
 	doSignOut = () => this.auth.signOut();
 
+	doSendSignInLinkToEmail = (email, actionCodeSettings) => 
+		this.auth.sendSignInLinkToEmail(email, actionCodeSettings);
+
 }
 
 export default Firebase;

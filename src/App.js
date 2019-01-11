@@ -6,6 +6,7 @@ import Record from './components/Record';
 import CSSModules from 'react-css-modules';
 import styles from './App.css';
 import SignInPage from './components/SignIn';
+import List from './components/List';
 
 import * as ROUTES from './constants/routes';
 
@@ -16,16 +17,7 @@ const App = () => {
         <nav>
           <ul styleName="nav-list">
             <li>
-              <Link styleName="link" to="/">Home</Link>
-            </li>
-            <li>
-              <Link styleName="link" to="/sequencer">Sequencer</Link>
-            </li>
-            <li>
-              <Link styleName="link" to="/record">Recorder</Link>
-            </li>
-            <li>
-              <Link styleName="link" to="/sampler">Sampler</Link>
+              <Link styleName="link" to="/list">Index</Link>
             </li>
              <li>
               <Link styleName="link" to="/signin">Sign In</Link>
@@ -33,6 +25,7 @@ const App = () => {
           </ul>
         </nav>
         <div styleName="App">
+          <Route path="/list" component={List} />
           <Route path="/sequencer" component={Sequencer} />
           <Route path="/record" component={Record} />
           <Route path="/sampler" component={Wrapper} />

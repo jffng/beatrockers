@@ -89,3 +89,7 @@
   display: block;
   padding: 24px;
 }
+
+.list {
+  text-align: left;
+}

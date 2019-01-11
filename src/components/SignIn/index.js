@@ -14,8 +14,16 @@ const SignInPage = () => (
 
 const INITIAL_STATE = {
   email: '',
-  password: '',
   error: null,
+  success: null,
+};
+
+const actionCodeSettings = {
+  // URL you want to redirect back to. The domain (www.example.com) for this
+  // URL must be whitelisted in the Firebase Console.
+  url: "http://localhost:3001/sampler",
+  // This must be true.
+  handleCodeInApp: true
 };
 
 class SignInFormBase extends Component {
@@ -26,13 +34,18 @@ class SignInFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { email, password } = this.state;
+    const { email } = this.state;
 
     this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
+      //.doSignInWithEmailAndPassword(email, password)
+      .doSendSignInLinkToEmail(email, actionCodeSettings)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.SAMPLER);
+        this.setState( { 
+          email: '', 
+          error: null,
+          success: 'An email with a sign in link has been sent to you.' });
+        //this.setState({ ...INITIAL_STATE });
+        //this.props.history.push(ROUTES.SAMPLER);
       })
       .catch(error => {
         this.setState({ error });
@@ -46,9 +59,9 @@ class SignInFormBase extends Component {
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, error, success } = this.state;
 
-    const isInvalid = password === '' || email === '';
+    const isInvalid = email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -59,16 +72,11 @@ class SignInFormBase extends Component {
           type="text"
           placeholder="Email Address"
         />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
         <button disabled={isInvalid} type="submit">
-          Sign In
+          Send a Sign In Link
         </button>
+
+        <p>{success}</p>
 
         {error && <p>{error.message}</p>}
       </form>
